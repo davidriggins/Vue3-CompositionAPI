@@ -9,6 +9,31 @@
 </template>
 
 <script>
+import { ref } from "vue";
+export default {
+  setup() {
+    const counter = ref(0);
+
+    const increaseCounter = () => {
+      counter.value++;
+    };
+
+    const decreaseCounter = () => {
+      counter.value--;
+    };
+
+    return {
+      counter,
+      increaseCounter,
+      decreaseCounter,
+    };
+  },
+};
+</script>
+
+<!--
+
+<script>
 export default {
   data() {
     return {
@@ -27,6 +52,8 @@ export default {
   },
 };
 </script>
+-->
+
 <style>
 .home {
   text-align: center;
