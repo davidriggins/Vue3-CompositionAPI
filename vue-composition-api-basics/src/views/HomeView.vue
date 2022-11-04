@@ -22,7 +22,18 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, watch } from "vue";
+import {
+  ref,
+  reactive,
+  computed,
+  watch,
+  onBeforeMount,
+  onMounted,
+  onBeforeUnmount,
+  onUnmounted,
+  onActivated,
+  onDeactivated,
+} from "vue";
 
 // const counter = ref(0);
 // const counterTitle = ref("My Counter:");
@@ -56,9 +67,30 @@ const increaseCounter = (amount, e) => {
 const decreaseCounter = (amount) => {
   counterData.count -= amount;
 };
+
+onBeforeMount(() => {
+  console.log("onBeforeMount");
+});
+
+onMounted(() => {
+  console.log("onMounted");
+});
+
+onBeforeUnmount(() => {
+  console.log("onBeforeUnmount");
+});
+
+onUnmounted(() => {
+  console.log("onUnmounted");
+});
+
+// onActivated(() => {
+//   console.log("onActivated");
+// });
 </script>
 
 <!-- Options API way for computed and watch -->
+
 <!--
 <script>
 export default {
