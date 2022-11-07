@@ -18,6 +18,11 @@
 // console.log(slots.title());
 
 /*
+  imports
+*/
+import { inject } from "vue";
+
+/*
   props
 */
 const props = defineProps({
@@ -29,15 +34,17 @@ const props = defineProps({
     type: String,
     default: "No title specified",
   },
-  userData: {
-    type: Object,
-  },
 });
 
 /*
   emits
 */
 const emit = defineEmits(["update:modelValue", "hideModal"]);
+
+/*
+  user data
+*/
+const userData = inject("userData");
 
 /*
   handle button click
