@@ -5,6 +5,7 @@
       <slot />
       <!-- <pre>{{ $slots.title() }}</pre> -->
       <button @click="$emit('update:modelValue')">Hide modal</button>
+      <div>Username is: {{ userData.username }}</div>
     </div>
   </teleport>
 </template>
@@ -27,6 +28,9 @@ const props = defineProps({
   title: {
     type: String,
     default: "No title specified",
+  },
+  userData: {
+    type: Object,
   },
 });
 
