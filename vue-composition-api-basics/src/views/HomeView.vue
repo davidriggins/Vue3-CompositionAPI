@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{ appTitle }}</h2>
+    <h2 ref="appTitleRef">{{ appTitle }}</h2>
 
     <h3>{{ counterData.title }}</h3>
 
@@ -27,6 +27,7 @@ import {
   reactive,
   computed,
   watch,
+  nextTick,
   onBeforeMount,
   onMounted,
   onBeforeUnmount,
@@ -41,6 +42,7 @@ import { vAutofocus } from "@/directives/vAutofocus";
 
 const appTitle = "My Amazing Counter App";
 
+const appTitleRef = ref(null);
 const counterData = reactive({
   count: 0,
   title: "My Counter:",
@@ -60,9 +62,11 @@ const oddOrEven = computed(() => {
   return "odd";
 });
 
-const increaseCounter = (amount, e) => {
+const increaseCounter = async (amount, e) => {
   //console.log(e);
   counterData.count += amount;
+  await nextTick();
+  console.log("do something when the counter has updated i the dom");
 };
 
 const decreaseCounter = (amount) => {
@@ -74,6 +78,7 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
+  console.log(`The app title is ${appTitleRef.value.offsetWidth} px wide!`);
   console.log("onMounted");
 });
 
