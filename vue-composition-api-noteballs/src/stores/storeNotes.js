@@ -30,5 +30,9 @@ export const useStoreNotes = defineStore("storeNotes", {
       // unshift puts it to the bottom of the array
       this.notes.unshift(note);
     },
+
+    deleteNote(idToDelete) {
+      this.notes = this.notes.filter((note) => note.id != idToDelete);
+    },
   },
 });
