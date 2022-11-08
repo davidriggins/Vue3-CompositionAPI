@@ -5,14 +5,14 @@
     <h3>{{ counter.title }}:</h3>
 
     <div>
-      <button class="btn">--</button>
-      <button class="btn">-</button>
+      <button @click="counter.decreaseCount(2)" class="btn">--</button>
+      <button @click="counter.decreaseCount(1)" class="btn">-</button>
       <span class="counter">{{ counter.count }}</span>
-      <button class="btn">+</button>
-      <button class="btn">++</button>
+      <button @click="counter.increaseCount(1)" class="btn">+</button>
+      <button @click="counter.increaseCount(2)" class="btn">++</button>
     </div>
 
-    <p>This counter is odd/even</p>
+    <p>This counter is {{ counter.oddOrEven }}</p>
 
     <div class="edit">
       <h4>Edit counter title:</h4>
