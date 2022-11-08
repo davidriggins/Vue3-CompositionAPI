@@ -54,16 +54,7 @@ const newNote = ref("");
 const newNoteRef = ref(null);
 
 const addNote = () => {
-  let currentDate = new Date().getTime();
-  let id = currentDate.toString();
-
-  let note = {
-    id: id,
-    content: newNote.value,
-  };
-
-  // unshift puts it to the bottom of the array
-  notes.value.unshift(note);
+  storeNotes.addNote(newNote.value);
 
   newNote.value = "";
 
