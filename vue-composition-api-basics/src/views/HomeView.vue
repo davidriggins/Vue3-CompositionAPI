@@ -2,21 +2,21 @@
   <div class="home">
     <h2 ref="appTitleRef">{{ appTitle }}</h2>
 
-    <h3>{{ counterData.title }}</h3>
+    <h3>{{ counter.title }}:</h3>
 
     <div>
-      <button @click="decreaseCounter(2)" class="btn">--</button>
-      <button @click="decreaseCounter(1)" class="btn">-</button>
-      <span class="counter">{{ counterData.count }}</span>
-      <button @click="increaseCounter(1, $event)" class="btn">+</button>
-      <button @click="increaseCounter(2)" class="btn">++</button>
+      <button class="btn">--</button>
+      <button class="btn">-</button>
+      <span class="counter">{{ counter.count }}</span>
+      <button class="btn">+</button>
+      <button class="btn">++</button>
     </div>
 
-    <p>This counter is {{ oddOrEven }}</p>
+    <p>This counter is odd/even</p>
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input v-model="counterData.title" type="text" v-autofocus />
+      <input v-model="counter.title" type="text" v-autofocus />
     </div>
   </div>
 </template>
@@ -36,7 +36,9 @@ import {
   onDeactivated,
 } from "vue";
 import { vAutofocus } from "@/directives/vAutofocus";
-import { useCounter } from "@/use/useCounter";
+import { useCounterStore } from "@/stores/counter";
+// import { useCounter } from "@/use/useCounter";
+
 // const counter = ref(0);
 // const counterTitle = ref("My Counter:");
 
@@ -47,12 +49,14 @@ const appTitleRef = ref(null);
 /*
   counter
 */
-// Destructuring approach preferred
-const { counterData, oddOrEven, increaseCounter, decreaseCounter } =
-  useCounter();
+const counter = useCounterStore();
 
-// or
-const counter = useCounter();
+// Destructuring approach preferred
+// const { counterData, oddOrEven, increaseCounter, decreaseCounter } =
+//   useCounter();
+
+// // or
+// const counter = useCounter();
 // then counter.oddOrEven.... etc.  prepend with counter.
 
 // const counterData = reactive({
