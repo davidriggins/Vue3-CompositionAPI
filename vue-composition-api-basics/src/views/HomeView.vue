@@ -36,59 +36,71 @@ import {
   onDeactivated,
 } from "vue";
 import { vAutofocus } from "@/directives/vAutofocus";
-
+import { useCounter } from "@/use/useCounter";
 // const counter = ref(0);
 // const counterTitle = ref("My Counter:");
 
 const appTitle = "My Amazing Counter App";
 
 const appTitleRef = ref(null);
-const counterData = reactive({
-  count: 0,
-  title: "My Counter:",
-});
 
-watch(
-  () => counterData.count,
-  (newCount, oldCount) => {
-    if (newCount == 20) {
-      alert("Way to go! You made it to 20");
-    }
-  }
-);
-const oddOrEven = computed(() => {
-  if (counterData.count % 2 === 0) return "even";
+/*
+  counter
+*/
+// Destructuring approach preferred
+const { counterData, oddOrEven, increaseCounter, decreaseCounter } =
+  useCounter();
 
-  return "odd";
-});
+// or
+const counter = useCounter();
+// then counter.oddOrEven.... etc.  prepend with counter.
 
-const increaseCounter = async (amount, e) => {
-  //console.log(e);
-  counterData.count += amount;
-  await nextTick();
-  console.log("do something when the counter has updated i the dom");
-};
+// const counterData = reactive({
+//   count: 0,
+//   title: "My Counter:",
+// });
 
-const decreaseCounter = (amount) => {
-  counterData.count -= amount;
-};
+// watch(
+//   () => counterData.count,
+//   (newCount, oldCount) => {
+//     if (newCount == 20) {
+//       alert("Way to go! You made it to 20");
+//     }
+//   }
+// );
+// const oddOrEven = computed(() => {
+//   if (counterData.count % 2 === 0) return "even";
 
-onBeforeMount(() => {
-  console.log("onBeforeMount");
-});
+//   return "odd";
+// });
 
-onMounted(() => {
-  console.log(`The app title is ${appTitleRef.value.offsetWidth} px wide!`);
-  console.log("onMounted");
-});
+// const increaseCounter = async (amount, e) => {
+//   //console.log(e);
+//   counterData.count += amount;
+//   await nextTick();
+//   console.log("do something when the counter has updated i the dom");
+// };
 
-onBeforeUnmount(() => {
-  console.log("onBeforeUnmount");
-});
+// const decreaseCounter = (amount) => {
+//   counterData.count -= amount;
+// };
 
-onUnmounted(() => {
-  console.log("onUnmounted");
-});
+// onBeforeMount(() => {
+//   console.log("onBeforeMount");
+// });
+
+// onMounted(() => {
+//   console.log(`The app title is ${appTitleRef.value.offsetWidth} px wide!`);
+//   console.log("onMounted");
+// });
+
+// onBeforeUnmount(() => {
+//   console.log("onBeforeUnmount");
+// });
+
+// onUnmounted(() => {
+//   console.log("onUnmounted");
+// });
 
 // onActivated(() => {
 //   console.log("onActivated");
