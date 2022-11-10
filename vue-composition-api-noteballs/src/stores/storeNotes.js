@@ -35,4 +35,14 @@ export const useStoreNotes = defineStore("storeNotes", {
       this.notes = this.notes.filter((note) => note.id != idToDelete);
     },
   },
+
+  getters: {
+    getNoteContent: (state) => {
+      return (id) => {
+        return state.notes.filter((note) => {
+          return note.id === id;
+        })[0].content;
+      };
+    },
+  },
 });
